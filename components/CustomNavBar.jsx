@@ -20,7 +20,7 @@ export default function CustomNavBar({ state, descriptors, navigation }) {
         return <AntDesign name="home" size={18} color={color} />;
       case "Shop":
         return <Entypo name="shop" size={18} color={color} />;
-      case "Favorites":
+      case "Wishlist":
         return <Fontisto name="heart-alt" size={16} color={color} />;
       case "Profile":
         return <FontAwesome6 name="user" size={16} color={color} />;

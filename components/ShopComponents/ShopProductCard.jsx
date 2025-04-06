@@ -29,10 +29,13 @@ export default function ShopProductCard({ image, title, price, description }) {
         resizeMode="cover"
       />
       <View style={styles.secondPart}>
+        <View>
+
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>
           {truncateString(description, 42)}
         </Text>
+        </View>
         <View
           style={{
             flexDirection: "row",
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     padding: 10,
+    justifyContent:'space-between'
   },
   title: {
     fontWeight: 700,

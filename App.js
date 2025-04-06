@@ -17,33 +17,41 @@ const Tabs = createBottomTabNavigator();
 
 function BottomTabs() {
   return (
-   
-      <Tabs.Navigator
-        tabBar={(props) => <CustomNavBar {...props} />}
-        screenOptions={{
-          contentStyle: { backgroundColor: "#F1F1F3" },
+    <Tabs.Navigator
+      tabBar={(props) => <CustomNavBar {...props} />}
+      screenOptions={{
+        contentStyle: { backgroundColor: "#F1F1F3" },
+      }}
+    >
+      <Tabs.Screen
+        name="Home"
+        component={HomePage}
+        options={{
+          headerShown: false,
         }}
-      >
-        <Tabs.Screen
-          name="Home"
-          component={HomePage}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen name="Shop" component={ShopScreen} options={{
-          headerShown:false
-        }} />
-        <Tabs.Screen name="Favorites" component={FavoritesScreen} />
-        <Tabs.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Tabs.Navigator>
-
+      />
+      <Tabs.Screen
+        name="Shop"
+        component={ShopScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="Wishlist"
+        component={FavoritesScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Tabs.Navigator>
   );
 }
 
