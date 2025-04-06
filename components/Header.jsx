@@ -2,12 +2,30 @@ import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
+import Entypo from "@expo/vector-icons/Entypo";
+import { useNavigation } from "@react-navigation/native";
 
-const Header = () => {
+const Header = ({ mainPage, headerStyles }) => {
+  const navigate = useNavigation();
+
+  function onPressHandler() {
+    if (mainPage) {
+      navigate.navigate("Home");
+    } else {
+      return;
+    }
+  }
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.iconNotificationsContainer}>
-        <Ionicons name="notifications-outline" size={18} color="black" />
+    <View style={[styles.container, headerStyles]}>
+      <Pressable
+        style={styles.iconNotificationsContainer}
+        onPress={() => onPressHandler()}
+      >
+        {mainPage ? (
+          <Entypo name="chevron-small-left" size={24} color="black" />
+        ) : (
+          <Ionicons name="notifications-outline" size={18} color="black" />
+        )}
       </Pressable>
       <View style={styles.inputContainer}>
         <Feather name="search" size={18} color="#c5c5c5" />
@@ -16,10 +34,15 @@ const Header = () => {
           placeholder="Search here ..."
           placeholderTextColor={"#c5c5c5"}
         />
-        <View style={{flexDirection:'row',gap:5}}>
-          <View style={{width:1,height:20, backgroundColor:'#e2d7d7',alignSelf:'center'}}>
-
-          </View>
+        <View style={{ flexDirection: "row", gap: 5 }}>
+          <View
+            style={{
+              width: 1,
+              height: 20,
+              backgroundColor: "#e2d7d7",
+              alignSelf: "center",
+            }}
+          ></View>
           <Pressable>
             <Ionicons name="filter-outline" size={20} color="#b3b1b1" />
           </Pressable>
@@ -39,9 +62,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: "5%",
+
     marginTop: 10,
-    paddingBottom:10
+    paddingBottom: 10,
   },
   iconNotificationsContainer: {
     width: 35,
@@ -66,3 +89,5 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
 });
+
+//  <Entypo name="chevron-small-left" size={24} color="black" />

@@ -63,7 +63,7 @@ function renderRecommendItem(itemData) {
 export default function HomePage() {
   return (
     <SafeAreaView>
-      <Header />
+      <Header mainPage={false} headerStyles={styles.headerStyles} />
       <FlatList
         data={ProductsData}
         renderItem={renderRecommendItem}
@@ -110,4 +110,7 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     marginVertical: 13,
   },
+  headerStyles:{
+    marginHorizontal: "5%",
+  }
 });
