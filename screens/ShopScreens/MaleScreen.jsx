@@ -6,8 +6,7 @@ import { mensFashion } from "../../assets/man-fashion-Data";
 
 export default function MaleScreen() {
   return (
-    <View>
-      <RecommendStyles />
+    <View >
       <ProductsWrapper data={mensFashion} />
     </View>
   );

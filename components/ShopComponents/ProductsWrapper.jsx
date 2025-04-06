@@ -1,5 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import ShopProductCard from "./ShopProductCard";
+import RecommendStyles from "./RecommendStyles";
 
 function renderItem(item) {
   return (
@@ -17,11 +18,11 @@ export default function ProductsWrapper({ data }) {
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
-      numColumns={"2"}
+      numColumns={2}
       showsVerticalScrollIndicator={false}
       columnWrapperStyle={{ gap: 10 }}
+      ListHeaderComponent={RecommendStyles}
+      ListFooterComponent={<View style={{ paddingBottom: 130 }} />}
     />
   );
 }
-
-const styles = StyleSheet.create({});

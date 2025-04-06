@@ -9,10 +9,20 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { truncateString } from "../../assets/helpers/helpers";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ShopProductCard({ image, title, price, description }) {
+  const navigation = useNavigation();
+  function onPress() {
+    navigation.navigate("ProductScreen", {
+      image,
+      price,
+      productName: title,
+      description,
+    });
+  }
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image
         source={{ uri: image }}
         style={{ width: "100%", height: "54%" }}
@@ -43,7 +53,7 @@ export default function ShopProductCard({ image, title, price, description }) {
 
 const width = Dimensions.get("window").width;
 
-const cardHeight = (width * 65) / 100;
+const cardHeight = (width * 72) / 100;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -7,7 +7,6 @@ import { everythingFashion } from "../../assets/everythingData";
 export default function Everything() {
   return (
     <View>
-      <RecommendStyles />
        <ProductsWrapper data={everythingFashion} />
     </View>
   );

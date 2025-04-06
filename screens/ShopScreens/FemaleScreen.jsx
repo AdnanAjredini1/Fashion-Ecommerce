@@ -7,7 +7,6 @@ import { womensFashion } from "../../assets/women-fashion-Data";
 export default function FemaleScreen() {
   return (
     <View>
-      <RecommendStyles />
       <ProductsWrapper data={womensFashion} />
     </View>
   );
