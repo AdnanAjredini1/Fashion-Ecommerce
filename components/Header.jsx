@@ -15,6 +15,10 @@ const Header = ({ mainPage, headerStyles }) => {
       return;
     }
   }
+
+  function onPressBag() {
+    navigate.navigate("BagScreen");
+  }
   return (
     <View style={[styles.container, headerStyles]}>
       <Pressable
@@ -48,7 +52,7 @@ const Header = ({ mainPage, headerStyles }) => {
           </Pressable>
         </View>
       </View>
-      <Pressable style={styles.iconNotificationsContainer}>
+      <Pressable style={styles.iconNotificationsContainer} onPress={onPressBag}>
         <Ionicons name="bag-handle-outline" size={15} color="black" />
       </Pressable>
     </View>

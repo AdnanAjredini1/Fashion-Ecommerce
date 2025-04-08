@@ -15,6 +15,7 @@ import productsSideImages from "../assets/product-side-images.json";
 import { truncateString } from "../assets/helpers/helpers";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Button from "../components/Button";
+import HeaderBack from "../components/HeaderBack";
 
 const SIZES = ["XS", "S", "M", "L", "XL"];
 const COLORS = ["#EF600E", "black"];
@@ -33,23 +34,10 @@ export default function ProductScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.headerContainer}>
-        <TouchableOpacity
-          style={styles.leftIconContainer}
-          onPress={onPressBackButton}
-        >
-          <Entypo name="chevron-small-left" size={24} color="black" />
-        </TouchableOpacity>
-        <Text
-          style={{
-            fontSize: 15,
-            fontWeight: 500,
-          }}
-        >
-          Product Details
-        </Text>
-        <View style={{ width: 35, height: 35 }}></View>
-      </View>
+      <HeaderBack
+        text="Product Details"
+        headerStyle={{ marginHorizontal: "5%" }}
+      />
       <ScrollView style={{ marginBottom: 90 }}>
         <View style={styles.imagesContainer}>
           <Image
@@ -149,7 +137,9 @@ export default function ProductScreen() {
         </View>
         <View style={styles.descriptionContainer}>
           <Text style={{ fontSize: 19, fontWeight: "600" }}>Description</Text>
-          <Text style={{fontSize:13,color:'rgba(29,29,29,0.5)'}}>{description}</Text>
+          <Text style={{ fontSize: 13, color: "rgba(29,29,29,0.5)" }}>
+            {description}
+          </Text>
         </View>
       </ScrollView>
       <View style={styles.buttonsWrapper}>
@@ -241,6 +231,6 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     marginTop: 20,
     paddingHorizontal: "5%",
-    gap:10
+    gap: 10,
   },
 });

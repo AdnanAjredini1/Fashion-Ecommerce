@@ -30,11 +30,13 @@ export default function Swiper() {
       <Carousel
         data={COLORS}
         renderItem={renderItem}
-        sliderWidth={width} // Required
-        itemWidth={width - 100} // Required
+        sliderWidth={width}
+        itemWidth={width - 100}
         inactiveSlideOpacity={0.5}
         firstItem={1}
         onSnapToItem={(index) => setActiveSlide(index)}
+        activeSlideAlignment="center"
+        activeAnimationType="spring"
       />
       <Pagination
         dotsLength={COLORS.length}

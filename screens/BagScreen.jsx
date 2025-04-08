@@ -1,15 +1,15 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../components/Header";
+import HeaderBack from "../components/HeaderBack";
 import FavoriteItemsWrapper from "../components/FavoriteComponents/FavoriteItemsWrapper";
-import { womensFashion } from "../assets/women-fashion-Data";
+import { mensFashion } from "../assets/man-fashion-Data";
 
-export default function FavoritesScreen() {
+export default function BagScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <Header mainPage={true} />
-      <FavoriteItemsWrapper data={womensFashion} isBag={false} />
+      <HeaderBack text="Bag" />
+      <FavoriteItemsWrapper data={mensFashion} isBag={true} />
     </SafeAreaView>
   );
 }
@@ -17,5 +17,6 @@ export default function FavoritesScreen() {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: "5%",
+    flex: 1,
   },
 });

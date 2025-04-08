@@ -1,26 +1,27 @@
 import { View, Text, FlatList } from "react-native";
 import React from "react";
-import { data } from "../../assets/profileItemsData";
+
 import FavoriteItem from "./FavoriteItem";
 
-function renderItem(item) {
-  return (
-    <FavoriteItem
-      title={item.item.name}
-      image={item.item.image}
-      description={item.item.description}
-      price={item.item.price}
-    />
-  );
-}
-
-export default function FavoriteItemsWrapper({ data }) {
+export default function FavoriteItemsWrapper({ data, isBag }) {
+  function renderItem(item) {
+    return (
+      <FavoriteItem
+        title={item.item.name}
+        image={item.item.image}
+        description={item.item.description}
+        price={item.item.price}
+        isBag={isBag}
+      />
+    );
+  }
   return (
     <FlatList
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
       showsVerticalScrollIndicator={false}
+      ListFooterComponent={<View style={{ paddingBottom: 140 }} />}
     />
   );
 }
