@@ -12,6 +12,7 @@ import ProductScreen from "./screens/ProductScreen";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import BagScreen from "./screens/BagScreen";
+import SearchScreen from "./screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -83,6 +84,13 @@ export default function App() {
           <Stack.Screen
             name="BagScreen"
             component={BagScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SearchScreen"
+            component={SearchScreen}
             options={{
               headerShown: false,
             }}

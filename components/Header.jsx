@@ -19,6 +19,10 @@ const Header = ({ mainPage, headerStyles }) => {
   function onPressBag() {
     navigate.navigate("BagScreen");
   }
+
+  function handleFocus() {
+    navigate.navigate("SearchScreen");
+  }
   return (
     <View style={[styles.container, headerStyles]}>
       <Pressable
@@ -37,6 +41,7 @@ const Header = ({ mainPage, headerStyles }) => {
           style={styles.input}
           placeholder="Search here ..."
           placeholderTextColor={"#c5c5c5"}
+          onFocus={handleFocus}
         />
         <View style={{ flexDirection: "row", gap: 5 }}>
           <View
