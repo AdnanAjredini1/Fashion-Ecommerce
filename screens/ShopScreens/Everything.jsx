@@ -4,10 +4,10 @@ import RecommendStyles from "../../components/ShopComponents/RecommendStyles";
 import ProductsWrapper from "../../components/ShopComponents/ProductsWrapper";
 import { everythingFashion } from "../../assets/everythingData";
 
-export default function Everything() {
+export default function Everything({onScroll}) {
   return (
     <View>
-       <ProductsWrapper data={everythingFashion} />
+       <ProductsWrapper data={everythingFashion} onScroll={onScroll} />
     </View>
   );
 }

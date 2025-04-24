@@ -12,7 +12,7 @@ function renderItem(item) {
     />
   );
 }
-export default function ProductsWrapper({ data }) {
+export default function ProductsWrapper({ data,onScroll }) {
   return (
     <FlatList
       data={data}
@@ -23,6 +23,7 @@ export default function ProductsWrapper({ data }) {
       columnWrapperStyle={{ gap: 10 }}
       ListHeaderComponent={RecommendStyles}
       ListFooterComponent={<View style={{ paddingBottom: 130 }} />}
+      onScroll={onScroll}
     />
   );
 }

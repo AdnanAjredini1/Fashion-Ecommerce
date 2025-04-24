@@ -5,8 +5,9 @@ import {
   FlatList,
   Pressable,
   TouchableOpacity,
+  Animated,
 } from "react-native";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 import Swiper from "../components/Swiper";
@@ -61,15 +62,52 @@ function renderRecommendItem(itemData) {
 }
 
 export default function HomePage() {
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const [previousScrollY, setPreviousScrollY] = useState(0);
+  const headerTranslate = useRef(new Animated.Value(0)).current;
+
+  const handleScroll = (event) => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+
+    if (currentOffset > previousScrollY && currentOffset > 50) {
+      // Scroll Down
+      Animated.timing(headerTranslate, {
+        toValue: -100,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+    } else if (currentOffset < previousScrollY) {
+      // Scroll Up
+      Animated.timing(headerTranslate, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+    }
+
+    setPreviousScrollY(currentOffset);
+  };
+
   return (
-    <SafeAreaView>
-      <Header mainPage={false} headerStyles={styles.headerStyles} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <Animated.View
+        style={[
+          styles.animatedHeader,
+          { transform: [{ translateY: headerTranslate }] },
+        ]}
+      >
+        <Header mainPage={false} headerStyles={styles.headerStyles} />
+      </Animated.View>
+
       <FlatList
         data={ProductsData}
         renderItem={renderRecommendItem}
         numColumns={2}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
         columnWrapperStyle={{ marginHorizontal: "5%", gap: 10 }}
-        style={{ marginBottom: 130 }}
+        style={{ paddingBottom: 100, paddingTop: 35 }}
+        ListFooterComponent={<View style={{ height: 100 }} />}
         ListHeaderComponent={
           <>
             <Swiper />
@@ -97,11 +135,11 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   categoryTextStyle: {
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: "600",
   },
   seeAllTextStyle: {
     color: "#ED600E",
-    fontWeight: 400,
+    fontWeight: "400",
   },
   textsContainer: {
     flexDirection: "row",
@@ -110,7 +148,15 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     marginVertical: 13,
   },
-  headerStyles:{
+  headerStyles: {
     marginHorizontal: "5%",
-  }
+  },
+  animatedHeader: {
+    position: "absolute",
+    top: 20,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    backgroundColor: "#f1f1f3",
+  },
 });

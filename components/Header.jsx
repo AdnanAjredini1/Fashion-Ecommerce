@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -7,10 +7,11 @@ import { useNavigation } from "@react-navigation/native";
 
 const Header = ({ mainPage, headerStyles }) => {
   const navigate = useNavigation();
+  const [searchText, setSearchText] = useState();
 
   function onPressHandler() {
     if (mainPage) {
-      navigate.navigate("Home");
+      navigate.goBack();
     } else {
       return;
     }
@@ -23,6 +24,8 @@ const Header = ({ mainPage, headerStyles }) => {
   function handleFocus() {
     navigate.navigate("SearchScreen");
   }
+
+  function onTextChangeHandler(value) {}
   return (
     <View style={[styles.container, headerStyles]}>
       <Pressable
