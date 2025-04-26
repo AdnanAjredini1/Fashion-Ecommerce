@@ -36,7 +36,7 @@ export default function Swiper() {
         firstItem={1}
         onSnapToItem={(index) => setActiveSlide(index)}
         activeSlideAlignment="center"
-        activeAnimationType="spring"
+        // activeAnimationType="spring"
       />
       <Pagination
         dotsLength={COLORS.length}

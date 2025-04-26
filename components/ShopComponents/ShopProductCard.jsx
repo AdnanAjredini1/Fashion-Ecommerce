@@ -10,8 +10,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { truncateString } from "../../assets/helpers/helpers";
 import { useNavigation } from "@react-navigation/native";
+import { memo } from "react";
 
-export default function ShopProductCard({ image, title, price, description }) {
+function ShopProductCard({ image, title, price, description }) {
   const navigation = useNavigation();
   function onPress() {
     navigation.navigate("ProductScreen", {
@@ -30,11 +31,10 @@ export default function ShopProductCard({ image, title, price, description }) {
       />
       <View style={styles.secondPart}>
         <View>
-
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>
-          {truncateString(description, 42)}
-        </Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>
+            {truncateString(description, 42)}
+          </Text>
         </View>
         <View
           style={{
@@ -54,6 +54,8 @@ export default function ShopProductCard({ image, title, price, description }) {
   );
 }
 
+export default memo(ShopProductCard);
+
 const width = Dimensions.get("window").width;
 
 const cardHeight = (width * 72) / 100;
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     padding: 10,
-    justifyContent:'space-between'
+    justifyContent: "space-between",
   },
   title: {
     fontWeight: 700,

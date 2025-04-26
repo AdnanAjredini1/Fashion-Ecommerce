@@ -7,7 +7,7 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLikedActions } from "../store/isLikedSlice";
 import { truncateString } from "../assets/helpers/helpers";
 
-export default function RecommendProductCard({
+ function RecommendProductCard({
   image,
   price,
   productName,
@@ -79,6 +79,7 @@ export default function RecommendProductCard({
     </TouchableOpacity>
   );
 }
+export default memo(RecommendProductCard)
 
 const width = Dimensions.get("window").width;
 

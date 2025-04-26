@@ -47,4 +47,5 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     flex: 1,
   },
+ 
 });

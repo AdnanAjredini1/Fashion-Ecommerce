@@ -2,14 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
-
-export default function FavoriteItem({
-  image,
-  title,
-  description,
-  price,
-  isBag,
-}) {
+import { memo } from "react";
+function FavoriteItem({ image, title, description, price, isBag }) {
   const navigation = useNavigation();
 
   function onPress() {
@@ -59,6 +53,8 @@ export default function FavoriteItem({
     </TouchableOpacity>
   );
 }
+
+export default memo(FavoriteItem);
 
 const styles = StyleSheet.create({
   container: {

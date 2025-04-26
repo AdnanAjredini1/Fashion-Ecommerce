@@ -3,12 +3,14 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Pressable,
   TouchableOpacity,
   Animated,
 } from "react-native";
 import React, { useRef, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import Header from "../components/Header";
 import Swiper from "../components/Swiper";
 import menCatImg from "../assets/—Pngtree—handsome young guy avatar cartoon_5233396.png";
@@ -65,6 +67,7 @@ export default function HomePage() {
   const scrollY = useRef(new Animated.Value(0)).current;
   const [previousScrollY, setPreviousScrollY] = useState(0);
   const headerTranslate = useRef(new Animated.Value(0)).current;
+  const insets = useSafeAreaInsets();
 
   const handleScroll = (event) => {
     const currentOffset = event.nativeEvent.contentOffset.y;
@@ -93,7 +96,7 @@ export default function HomePage() {
       <Animated.View
         style={[
           styles.animatedHeader,
-          { transform: [{ translateY: headerTranslate }] },
+          { transform: [{ translateY: headerTranslate }], top: insets.top },
         ]}
       >
         <Header mainPage={false} headerStyles={styles.headerStyles} />
@@ -153,7 +156,6 @@ const styles = StyleSheet.create({
   },
   animatedHeader: {
     position: "absolute",
-    top: 20,
     left: 0,
     right: 0,
     zIndex: 1000,

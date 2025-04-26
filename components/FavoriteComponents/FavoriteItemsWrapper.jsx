@@ -3,7 +3,7 @@ import React from "react";
 
 import FavoriteItem from "./FavoriteItem";
 
-export default function FavoriteItemsWrapper({ data, isBag }) {
+export default function FavoriteItemsWrapper({ data, isBag,onScroll }) {
   function renderItem(item) {
     return (
       <FavoriteItem
@@ -22,6 +22,9 @@ export default function FavoriteItemsWrapper({ data, isBag }) {
       keyExtractor={(item) => item.id.toString()}
       showsVerticalScrollIndicator={false}
       ListFooterComponent={<View style={{ paddingBottom: 140 }} />}
+      onScroll={onScroll}
+      style={{paddingTop:50}}
+      
     />
   );
 }

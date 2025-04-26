@@ -1,7 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import { memo } from "react";
 
-export default function Item({ icon, title }) {
+function Item({ icon, title }) {
   return (
     <View style={styles.container}>
       <View style={styles.titleIconContainer}>
@@ -20,6 +21,8 @@ export default function Item({ icon, title }) {
   );
 }
 
+export default memo(Item);
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -32,6 +35,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontWeight:"600"
+    fontWeight: "600",
   },
 });
