@@ -12,7 +12,7 @@ function renderItem(item) {
     />
   );
 }
-export default function ProductsWrapper({ data,onScroll }) {
+export default function ProductsWrapper({ data, onScroll, isSearch }) {
   return (
     <FlatList
       data={data}
@@ -21,9 +21,10 @@ export default function ProductsWrapper({ data,onScroll }) {
       numColumns={2}
       showsVerticalScrollIndicator={false}
       columnWrapperStyle={{ gap: 10 }}
-      ListHeaderComponent={RecommendStyles}
+      ListHeaderComponent={isSearch ? "" : RecommendStyles}
       ListFooterComponent={<View style={{ paddingBottom: 130 }} />}
       onScroll={onScroll}
+      style={isSearch ? { paddingTop: 60 } : ""}
     />
   );
 }

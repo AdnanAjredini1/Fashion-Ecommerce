@@ -5,9 +5,8 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useNavigation } from "@react-navigation/native";
 
-const Header = ({ mainPage, headerStyles }) => {
+const Header = ({ mainPage, headerStyles, setSearchTextFun }) => {
   const navigate = useNavigation();
-  const [searchText, setSearchText] = useState();
 
   function onPressHandler() {
     if (mainPage) {
@@ -25,7 +24,9 @@ const Header = ({ mainPage, headerStyles }) => {
     navigate.navigate("SearchScreen");
   }
 
-  function onTextChangeHandler(value) {}
+  function onTextChangeHandler(value) {
+    setSearchTextFun(value);
+  }
   return (
     <View style={[styles.container, headerStyles]}>
       <Pressable
@@ -45,6 +46,7 @@ const Header = ({ mainPage, headerStyles }) => {
           placeholder="Search here ..."
           placeholderTextColor={"#c5c5c5"}
           onFocus={handleFocus}
+          onChangeText={onTextChangeHandler}
         />
         <View style={{ flexDirection: "row", gap: 5 }}>
           <View
