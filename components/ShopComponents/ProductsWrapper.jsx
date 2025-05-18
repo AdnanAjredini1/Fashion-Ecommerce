@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import ShopProductCard from "./ShopProductCard";
 import RecommendStyles from "./RecommendStyles";
 
@@ -17,7 +17,7 @@ export default function ProductsWrapper({ data, onScroll, isSearch }) {
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => String(item?.product_id ?? item?.id)}
       numColumns={2}
       showsVerticalScrollIndicator={false}
       columnWrapperStyle={{ gap: 10 }}

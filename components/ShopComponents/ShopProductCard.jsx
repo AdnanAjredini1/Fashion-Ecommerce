@@ -31,9 +31,9 @@ function ShopProductCard({ image, title, price, description }) {
       />
       <View style={styles.secondPart}>
         <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>
-            {truncateString(description, 42)}
+          <Text style={styles.title }>{title ?? ""}</Text>
+          <Text style={styles.description }>
+            {truncateString(description ?? "", 42)}
           </Text>
         </View>
         <View

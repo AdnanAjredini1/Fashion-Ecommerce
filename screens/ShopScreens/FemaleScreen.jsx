@@ -1,13 +1,14 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import RecommendStyles from "../../components/ShopComponents/RecommendStyles";
 import ProductsWrapper from "../../components/ShopComponents/ProductsWrapper";
 import { womensFashion } from "../../assets/women-fashion-Data";
+import useProductsByCategory from "../../Hooks/useProductsByCategory";
 
 export default function FemaleScreen() {
+  const { data } = useProductsByCategory("women");
   return (
     <View>
-      <ProductsWrapper data={womensFashion} />
+      <ProductsWrapper data={data ?? womensFashion} />
     </View>
   );
 }

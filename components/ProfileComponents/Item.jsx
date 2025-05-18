@@ -1,23 +1,28 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { memo } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 function Item({ icon, title }) {
+  const navigation = useNavigation();
+  function onPress() {
+    navigation.navigate("ProfileItemScreen");
+  }
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.titleIconContainer}>
         <TouchableOpacity>{icon}</TouchableOpacity>
         <Text style={styles.title}>{title}</Text>
       </View>
 
-      <TouchableOpacity>
+      <View>
         <SimpleLineIcons
           name="arrow-right"
           size={16}
           color="rgba(29,29,29,0.58)"
         />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 

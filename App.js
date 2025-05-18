@@ -13,6 +13,8 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import BagScreen from "./screens/BagScreen";
 import SearchScreen from "./screens/SearchScreen";
+import ProfileItemScreen from "./screens/ProfileItemScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -67,6 +69,13 @@ export default function App() {
           }}
         >
           <Stack.Screen
+            name="WelcomeScreen"
+            component={WelcomeScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
             name="Tabs"
             component={BottomTabs}
             options={{
@@ -94,6 +103,11 @@ export default function App() {
             options={{
               headerShown: false,
             }}
+          />
+          <Stack.Screen
+            name="ProfileItemScreen"
+            component={ProfileItemScreen}
+            headerShown={false}
           />
         </Stack.Navigator>
       </NavigationContainer>

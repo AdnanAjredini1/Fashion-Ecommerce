@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Animated,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -18,6 +18,7 @@ import Categories from "../components/Categories";
 import Category from "../components/Category";
 import RecommendProductCard from "../components/RecommendProductCard";
 import ProductsData from "../assets/products.json";
+import axios from "axios";
 
 const CATEGORIES = [
   {
@@ -90,6 +91,46 @@ export default function HomePage() {
 
     setPreviousScrollY(currentOffset);
   };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       console.log("Fetching data...");
+  //       const response = await axios.get("https://fashion-ecommerce-back-dxpf.vercel.app");
+  //       const result = response.data;
+  //       // setData(result); // Uncomment when using state
+  //       console.log("Fetched data:", result);
+  //     } catch (error) {
+  //       console.error("Axios fetch error:", error.message);
+  //       // setError(error.message); // Uncomment when using error state
+  //     } finally {
+  //       // setLoading(false); // Uncomment when using loading state
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+  // useEffect(() => {
+  //   const postData = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         "https://fashion-ecommerce-back-dxpf.vercel.app/get-product-by-category",
+  //         {
+  //           category: "men",
+  //         },
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+
+  //       console.log("Response data:", response.data);
+  //     } catch (error) {
+  //       console.error("POST request error:", error.message);
+  //     }
+  //   };
+
+  //   postData();
+  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -104,4 +104,3 @@ const styles = StyleSheet.create({
   },
 });
 
-//  <Entypo name="chevron-small-left" size={24} color="black" />

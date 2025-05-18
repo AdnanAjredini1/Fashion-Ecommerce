@@ -1,13 +1,14 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import RecommendStyles from "../../components/ShopComponents/RecommendStyles";
 import ProductsWrapper from "../../components/ShopComponents/ProductsWrapper";
 import { everythingFashion } from "../../assets/everythingData";
+import useProductsByCategory from "../../Hooks/useProductsByCategory";
 
-export default function Everything({onScroll}) {
+export default function Everything({ onScroll }) {
+  const { data } = useProductsByCategory("Everything");
   return (
     <View>
-       <ProductsWrapper data={everythingFashion} onScroll={onScroll} />
+      <ProductsWrapper data={data ?? everythingFashion} onScroll={onScroll} />
     </View>
   );
 }
