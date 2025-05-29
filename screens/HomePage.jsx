@@ -146,6 +146,7 @@ export default function HomePage() {
       <FlatList
         data={ProductsData}
         renderItem={renderRecommendItem}
+        keyExtractor={item => item.imageUrl}
         numColumns={2}
         onScroll={handleScroll}
         scrollEventThrottle={16}

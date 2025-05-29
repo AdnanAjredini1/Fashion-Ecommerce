@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 12,
     borderRadius: 10,
-    elevation:3
+    elevation:5,
+    shadowOffset: { height: -2 },
   },
   tabItem: {
     flexDirection: "row",

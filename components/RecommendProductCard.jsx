@@ -7,7 +7,7 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import React, { memo, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -15,30 +15,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLikedActions } from "../store/isLikedSlice";
 import { truncateString } from "../assets/helpers/helpers";
 
- function RecommendProductCard({
-  image,
-  price,
-  productName,
-  description,
-}) {
+function RecommendProductCard({ image, price, productName, description }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const navigation = useNavigation();
-  const isLiked = useSelector((state) => state.like.isLiked);
-  const dispatch = useDispatch();
 
-  function onPressFavoriteButton() {
-    setIsFavorite(!isFavorite);
-    // dispatch(isLikedActions.setIsLiked());
-  }
+  const onPressFavoriteButton = useCallback(() => {
+    setIsFavorite((prev) => !prev);
+  }, []);
 
-  function onPressRecoProductCard() {
+  const onPressRecoProductCard = useCallback(() => {
     navigation.navigate("ProductScreen", {
       image,
       price,
       productName,
       description,
     });
-  }
+  }, [image, price, productName, description]);
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -79,7 +72,7 @@ import { truncateString } from "../assets/helpers/helpers";
     </TouchableOpacity>
   );
 }
-export default memo(RecommendProductCard)
+export default memo(RecommendProductCard);
 
 const width = Dimensions.get("window").width;
 

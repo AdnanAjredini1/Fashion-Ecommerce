@@ -15,6 +15,7 @@ import BagScreen from "./screens/BagScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ProfileItemScreen from "./screens/ProfileItemScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -50,7 +51,8 @@ function BottomTabs() {
       />
       <Tabs.Screen
         name="Profile"
-        component={ProfileScreen}
+        // component={ProfileScreen}
+        component={LoginScreen}
         options={{
           headerShown: false,
         }}
