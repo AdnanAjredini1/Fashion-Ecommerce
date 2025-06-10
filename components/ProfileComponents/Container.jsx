@@ -2,7 +2,11 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import avatarImg from "../../assets/cropped_image.png";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useDispatch, useSelector } from "react-redux";
 export default function Container() {
+  const dispatch = useDispatch()
+ const {user} = useSelector((state) => state.user);
+  console.log("User at Container ==========================================:", user); 
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
@@ -12,7 +16,7 @@ export default function Container() {
         />
         <View>
           <Text style={{ fontWeight: "700", fontSize: 17 }}>
-            Adnan Ajredini
+            {user?.username || "Username"}
           </Text>
           <View style={{ flexDirection: "row", alignItems: "center", gap:3 }}>
             <Entypo name="location-pin" size={14} color="rgba(29,29,29,0.58)" />

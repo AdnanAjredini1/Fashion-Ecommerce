@@ -6,12 +6,34 @@ import Container from "../components/ProfileComponents/Container";
 import ItemContainer from "../components/ProfileComponents/ItemContainer";
 import Item from "../components/ProfileComponents/Item";
 import { data, data2 } from "../assets/profileItemsData";
+import Button from "../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { userActions } from "../store/userSlice";
 
 export default function ProfileScreen() {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  async function onPressLogout() {
+    try {
+      await AsyncStorage.removeItem("token");
+      await AsyncStorage.removeItem("user");
+      navigation.navigate("Profile");
+      dispatch(userActions.clearUser());
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Logout failed. Please try again.");
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ProfileHeader />
-      <ScrollView showsVerticalScrollIndicator={false} style={{marginBottom:100}} >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ marginBottom: 100 }}
+      >
         <Container />
         <Text style={styles.subtitle}>Settings</Text>
         <ItemContainer>
@@ -25,7 +47,13 @@ export default function ProfileScreen() {
             <Item key={item.title} title={item.title} icon={item.icon} />
           ))}
         </ItemContainer>
-       <View style={{marginBottom:50}}></View>
+        <Button
+          btnText="Logout"
+          btnTextStyles={{ fontWeight: 700 }}
+          buttonStyles={{ marginTop: 20 }}
+          onPress={onPressLogout}
+        />
+        <View style={{ marginBottom: 50 }}></View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -34,12 +62,11 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: "5%",
-    
   },
   subtitle: {
     fontSize: 16,
     fontWeight: 500,
-    marginTop:25,
-    marginBottom:15
+    marginTop: 25,
+    marginBottom: 15,
   },
 });

@@ -9,18 +9,47 @@ import FavoritesScreen from "./screens/FavoritesScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CustomNavBar from "./components/CustomNavBar";
 import ProductScreen from "./screens/ProductScreen";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store/store";
 import BagScreen from "./screens/BagScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ProfileItemScreen from "./screens/ProfileItemScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import { useEffect, useLayoutEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { userActions } from "./store/userSlice";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 function BottomTabs() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem("token");
+        const storedUser = await AsyncStorage.getItem("user");
+
+        if (token) {
+          const user = JSON.parse(storedUser);
+          dispatch(userActions.setUser({ user, token, isAuthenticated: true }));
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  console.log("Is user authenticated:", isAuthenticated);
   return (
     <Tabs.Navigator
       tabBar={(props) => <CustomNavBar {...props} />}
@@ -52,7 +81,7 @@ function BottomTabs() {
       <Tabs.Screen
         name="Profile"
         // component={ProfileScreen}
-        component={LoginScreen}
+        component={isAuthenticated ? ProfileScreen : LoginScreen}
         options={{
           headerShown: false,
         }}
@@ -111,6 +140,9 @@ export default function App() {
             component={ProfileItemScreen}
             headerShown={false}
           />
+          <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{
+            title: "Reset Password",
+          }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
